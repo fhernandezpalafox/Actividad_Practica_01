@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba - Escenario 5: Factorial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Casos de Prueba - Escenario 5: Factorial</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Resultados de las Pruebas</h2>
+      <div id="resultados" class="space-y-2"></div>
+      <div id="resumen" class="mt-4 p-4 rounded font-semibold"></div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Casos de Prueba Definidos</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="border border-gray-300 p-2">Caso</th>
+              <th class="border border-gray-300 p-2">Número</th>
+              <th class="border border-gray-300 p-2">Factorial Esperado</th>
+              <th class="border border-gray-300 p-2">Cálculo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-gray-300 p-2">Factorial de 0</td><td class="border border-gray-300 p-2">0</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">Por definición</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 1</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 2</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">2×1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 3</td><td class="border border-gray-300 p-2">3</td><td class="border border-gray-300 p-2">6</td><td class="border border-gray-300 p-2">3×2×1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 4</td><td class="border border-gray-300 p-2">4</td><td class="border border-gray-300 p-2">24</td><td class="border border-gray-300 p-2">4×3×2×1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 5</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">120</td><td class="border border-gray-300 p-2">5×4×3×2×1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 6</td><td class="border border-gray-300 p-2">6</td><td class="border border-gray-300 p-2">720</td><td class="border border-gray-300 p-2">6×5×4×3×2×1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 7</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">5040</td><td class="border border-gray-300 p-2">7×6×5×4×3×2×1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factorial de 10</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">3628800</td><td class="border border-gray-300 p-2">10×9×8×7×6×5×4×3×2×1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class FactorialTest {
+      calcular(n) {
+        if (n === 0) return 1; // Por definición, 0! = 1
+        let resultado = 1;
+        for (let i = 1; i <= n; i++) {
+          resultado *= i;
+        }
+        return resultado;
+      }
+    }
+
+    const factorialTest = new FactorialTest();
+    
+    const casosPrueba = [
+      { nombre: "Factorial de 0", numero: 0, esperado: 1, calculo: "Por definición" },
+      { nombre: "Factorial de 1", numero: 1, esperado: 1, calculo: "1" },
+      { nombre: "Factorial de 2", numero: 2, esperado: 2, calculo: "2×1" },
+      { nombre: "Factorial de 3", numero: 3, esperado: 6, calculo: "3×2×1" },
+      { nombre: "Factorial de 4", numero: 4, esperado: 24, calculo: "4×3×2×1" },
+      { nombre: "Factorial de 5", numero: 5, esperado: 120, calculo: "5×4×3×2×1" },
+      { nombre: "Factorial de 6", numero: 6, esperado: 720, calculo: "6×5×4×3×2×1" },
+      { nombre: "Factorial de 7", numero: 7, esperado: 5040, calculo: "7×6×5×4×3×2×1" },
+      { nombre: "Factorial de 8", numero: 8, esperado: 40320, calculo: "8×7×6×5×4×3×2×1" },
+      { nombre: "Factorial de 9", numero: 9, esperado: 362880, calculo: "9×8×7×6×5×4×3×2×1" },
+      { nombre: "Factorial de 10", numero: 10, esperado: 3628800, calculo: "10×9×8×7×6×5×4×3×2×1" },
+      { nombre: "Factorial de 12", numero: 12, esperado: 479001600, calculo: "12!" }
+    ];
+
+    function ejecutarPruebas() {
+      const resultadosDiv = document.getElementById('resultados');
+      let pasadas = 0;
+      let fallidas = 0;
+
+      casosPrueba.forEach((caso, index) => {
+        const resultado = factorialTest.calcular(caso.numero);
+        const paso = resultado === caso.esperado;
+
+        if (paso) {
+          pasadas++;
+        } else {
+          fallidas++;
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3 rounded ${paso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        div.innerHTML = `
+          <strong>${paso ? '✅' : '❌'} ${caso.nombre}</strong><br>
+          Entrada: ${caso.numero}<br>
+          Esperado: ${caso.esperado.toLocaleString()}<br>
+          Obtenido: ${resultado.toLocaleString()}<br>
+          <em>Cálculo: ${caso.calculo}</em>
+        `;
+        resultadosDiv.appendChild(div);
+      });
+
+      const resumenDiv = document.getElementById('resumen');
+      resumenDiv.className = `mt-4 p-4 rounded ${fallidas === 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`;
+      resumenDiv.innerHTML = `
+        📊 <strong>Resumen:</strong> ${pasadas} pruebas pasadas, ${fallidas} pruebas fallidas de ${casosPrueba.length} totales
+      `;
+    }
+
+    // Ejecutar pruebas al cargar la página
+    window.onload = ejecutarPruebas;
+  </script>
+</body>
+</html>

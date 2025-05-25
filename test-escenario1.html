@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba - Escenario 1: Sistema de Descuentos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Casos de Prueba - Escenario 1: Sistema de Descuentos</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Resultados de las Pruebas</h2>
+      <div id="resultados" class="space-y-2"></div>
+      <div id="resumen" class="mt-4 p-4 rounded font-semibold"></div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Casos de Prueba Definidos</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="border border-gray-300 p-2">Caso</th>
+              <th class="border border-gray-300 p-2">Cantidad</th>
+              <th class="border border-gray-300 p-2">Precio</th>
+              <th class="border border-gray-300 p-2">Subtotal Esperado</th>
+              <th class="border border-gray-300 p-2">Descuento Esperado</th>
+              <th class="border border-gray-300 p-2">Total Esperado</th>
+              <th class="border border-gray-300 p-2">Porcentaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-gray-300 p-2">Sin descuento</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">50</td><td class="border border-gray-300 p-2">0</td><td class="border border-gray-300 p-2">50</td><td class="border border-gray-300 p-2">0%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 10%</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">100</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">90</td><td class="border border-gray-300 p-2">10%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Descuento 10%</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">150</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">135</td><td class="border border-gray-300 p-2">10%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 20%</td><td class="border border-gray-300 p-2">25</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">250</td><td class="border border-gray-300 p-2">50</td><td class="border border-gray-300 p-2">200</td><td class="border border-gray-300 p-2">20%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Descuento 20%</td><td class="border border-gray-300 p-2">50</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">500</td><td class="border border-gray-300 p-2">100</td><td class="border border-gray-300 p-2">400</td><td class="border border-gray-300 p-2">20%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 40%</td><td class="border border-gray-300 p-2">101</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">1010</td><td class="border border-gray-300 p-2">404</td><td class="border border-gray-300 p-2">606</td><td class="border border-gray-300 p-2">40%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Descuento 40%</td><td class="border border-gray-300 p-2">150</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">1500</td><td class="border border-gray-300 p-2">600</td><td class="border border-gray-300 p-2">900</td><td class="border border-gray-300 p-2">40%</td></tr>
+            <tr><td class="border border-gray-300 p-2">Precio decimal</td><td class="border border-gray-300 p-2">30</td><td class="border border-gray-300 p-2">15.50</td><td class="border border-gray-300 p-2">465</td><td class="border border-gray-300 p-2">93</td><td class="border border-gray-300 p-2">372</td><td class="border border-gray-300 p-2">20%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class DescuentoTest {
+      calcular(cantidad, precio) {
+        const subtotal = cantidad * precio;
+        let porcentajeDescuento = 0;
+        
+        if (cantidad > 100) {
+          porcentajeDescuento = 0.40;
+        } else if (cantidad >= 25) {
+          porcentajeDescuento = 0.20;
+        } else if (cantidad >= 10) {
+          porcentajeDescuento = 0.10;
+        }
+        
+        const descuento = subtotal * porcentajeDescuento;
+        const total = subtotal - descuento;
+        
+        return {
+          subtotal: Math.round(subtotal * 100) / 100,
+          descuento: Math.round(descuento * 100) / 100,
+          total: Math.round(total * 100) / 100,
+          porcentaje: porcentajeDescuento * 100
+        };
+      }
+    }
+
+    const descuentoTest = new DescuentoTest();
+    
+    const casosPrueba = [
+      { nombre: "Sin descuento", cantidad: 5, precio: 10, esperado: { subtotal: 50, descuento: 0, total: 50, porcentaje: 0 } },
+      { nombre: "Límite 10%", cantidad: 10, precio: 10, esperado: { subtotal: 100, descuento: 10, total: 90, porcentaje: 10 } },
+      { nombre: "Descuento 10%", cantidad: 15, precio: 10, esperado: { subtotal: 150, descuento: 15, total: 135, porcentaje: 10 } },
+      { nombre: "Límite 20%", cantidad: 25, precio: 10, esperado: { subtotal: 250, descuento: 50, total: 200, porcentaje: 20 } },
+      { nombre: "Descuento 20%", cantidad: 50, precio: 10, esperado: { subtotal: 500, descuento: 100, total: 400, porcentaje: 20 } },
+      { nombre: "Límite 40%", cantidad: 101, precio: 10, esperado: { subtotal: 1010, descuento: 404, total: 606, porcentaje: 40 } },
+      { nombre: "Descuento 40%", cantidad: 150, precio: 10, esperado: { subtotal: 1500, descuento: 600, total: 900, porcentaje: 40 } },
+      { nombre: "Precio decimal", cantidad: 30, precio: 15.50, esperado: { subtotal: 465, descuento: 93, total: 372, porcentaje: 20 } }
+    ];
+
+    function ejecutarPruebas() {
+      const resultadosDiv = document.getElementById('resultados');
+      let pasadas = 0;
+      let fallidas = 0;
+
+      casosPrueba.forEach((caso, index) => {
+        const resultado = descuentoTest.calcular(caso.cantidad, caso.precio);
+        const paso = 
+          resultado.subtotal === caso.esperado.subtotal &&
+          resultado.descuento === caso.esperado.descuento &&
+          resultado.total === caso.esperado.total &&
+          resultado.porcentaje === caso.esperado.porcentaje;
+
+        if (paso) {
+          pasadas++;
+        } else {
+          fallidas++;
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3 rounded ${paso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        div.innerHTML = `
+          <strong>${paso ? '✅' : '❌'} ${caso.nombre}</strong><br>
+          Entrada: ${caso.cantidad} unidades × $${caso.precio}<br>
+          Esperado: Subtotal=$${caso.esperado.subtotal}, Descuento=$${caso.esperado.descuento}, Total=$${caso.esperado.total}<br>
+          Obtenido: Subtotal=$${resultado.subtotal}, Descuento=$${resultado.descuento}, Total=$${resultado.total}
+        `;
+        resultadosDiv.appendChild(div);
+      });
+
+      const resumenDiv = document.getElementById('resumen');
+      resumenDiv.className = `mt-4 p-4 rounded ${fallidas === 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`;
+      resumenDiv.innerHTML = `
+        📊 <strong>Resumen:</strong> ${pasadas} pruebas pasadas, ${fallidas} pruebas fallidas de ${casosPrueba.length} totales
+      `;
+    }
+
+    // Ejecutar pruebas al cargar la página
+    window.onload = ejecutarPruebas;
+  </script>
+</body>
+</html>

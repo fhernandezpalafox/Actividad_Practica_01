@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba - Escenario 3: Número Mayor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Casos de Prueba - Escenario 3: Número Mayor</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Resultados de las Pruebas</h2>
+      <div id="resultados" class="space-y-2"></div>
+      <div id="resumen" class="mt-4 p-4 rounded font-semibold"></div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Casos de Prueba Definidos</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="border border-gray-300 p-2">Caso</th>
+              <th class="border border-gray-300 p-2">Número 1</th>
+              <th class="border border-gray-300 p-2">Número 2</th>
+              <th class="border border-gray-300 p-2">Número 3</th>
+              <th class="border border-gray-300 p-2">Mayor Esperado</th>
+              <th class="border border-gray-300 p-2">Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-gray-300 p-2">Primero mayor</td><td class="border border-gray-300 p-2">12</td><td class="border border-gray-300 p-2">8</td><td class="border border-gray-300 p-2">9</td><td class="border border-gray-300 p-2">12</td><td class="border border-gray-300 p-2">Primer número es el mayor</td></tr>
+            <tr><td class="border border-gray-300 p-2">Segundo mayor</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">Segundo número es el mayor</td></tr>
+            <tr><td class="border border-gray-300 p-2">Tercero mayor</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">3</td><td class="border border-gray-300 p-2">8</td><td class="border border-gray-300 p-2">8</td><td class="border border-gray-300 p-2">Tercer número es el mayor</td></tr>
+            <tr><td class="border border-gray-300 p-2">Todos iguales</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">Los tres números son iguales</td></tr>
+            <tr><td class="border border-gray-300 p-2">Dos iguales (1,2)</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">3</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">Primero y segundo iguales</td></tr>
+            <tr><td class="border border-gray-300 p-2">Dos iguales (1,3)</td><td class="border border-gray-300 p-2">9</td><td class="border border-gray-300 p-2">4</td><td class="border border-gray-300 p-2">9</td><td class="border border-gray-300 p-2">9</td><td class="border border-gray-300 p-2">Primero y tercero iguales</td></tr>
+            <tr><td class="border border-gray-300 p-2">Dos iguales (2,3)</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">6</td><td class="border border-gray-300 p-2">6</td><td class="border border-gray-300 p-2">6</td><td class="border border-gray-300 p-2">Segundo y tercero iguales</td></tr>
+            <tr><td class="border border-gray-300 p-2">Números grandes</td><td class="border border-gray-300 p-2">1000</td><td class="border border-gray-300 p-2">999</td><td class="border border-gray-300 p-2">1001</td><td class="border border-gray-300 p-2">1001</td><td class="border border-gray-300 p-2">Números de 4 dígitos</td></tr>
+            <tr><td class="border border-gray-300 p-2">Números negativos</td><td class="border border-gray-300 p-2">-5</td><td class="border border-gray-300 p-2">-10</td><td class="border border-gray-300 p-2">-3</td><td class="border border-gray-300 p-2">-3</td><td class="border border-gray-300 p-2">Todos negativos</td></tr>
+            <tr><td class="border border-gray-300 p-2">Mixto pos/neg</td><td class="border border-gray-300 p-2">-2</td><td class="border border-gray-300 p-2">0</td><td class="border border-gray-300 p-2">3</td><td class="border border-gray-300 p-2">3</td><td class="border border-gray-300 p-2">Positivos, negativos y cero</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class MayorTest {
+      calcularMayor(num1, num2, num3) {
+        let mayor = num1;
+        if (num2 > mayor) {
+          mayor = num2;
+        }
+        if (num3 > mayor) {
+          mayor = num3;
+        }
+        return mayor;
+      }
+    }
+
+    const mayorTest = new MayorTest();
+    
+    const casosPrueba = [
+      { nombre: "Primero mayor", num1: 12, num2: 8, num3: 9, esperado: 12, observacion: "Primer número es el mayor" },
+      { nombre: "Segundo mayor", num1: 10, num2: 15, num3: 7, esperado: 15, observacion: "Segundo número es el mayor" },
+      { nombre: "Tercero mayor", num1: 5, num2: 3, num3: 8, esperado: 8, observacion: "Tercer número es el mayor" },
+      { nombre: "Todos iguales", num1: 5, num2: 5, num3: 5, esperado: 5, observacion: "Los tres números son iguales" },
+      { nombre: "Dos iguales (1,2)", num1: 7, num2: 7, num3: 3, esperado: 7, observacion: "Primero y segundo iguales" },
+      { nombre: "Dos iguales (1,3)", num1: 9, num2: 4, num3: 9, esperado: 9, observacion: "Primero y tercero iguales" },
+      { nombre: "Dos iguales (2,3)", num1: 2, num2: 6, num3: 6, esperado: 6, observacion: "Segundo y tercero iguales" },
+      { nombre: "Números grandes", num1: 1000, num2: 999, num3: 1001, esperado: 1001, observacion: "Números de 4 dígitos" },
+      { nombre: "Números negativos", num1: -5, num2: -10, num3: -3, esperado: -3, observacion: "Todos negativos" },
+      { nombre: "Mixto pos/neg", num1: -2, num2: 0, num3: 3, esperado: 3, observacion: "Positivos, negativos y cero" },
+      { nombre: "Ceros", num1: 0, num2: 0, num3: 0, esperado: 0, observacion: "Todos cero" },
+      { nombre: "Uno es cero", num1: 0, num2: -1, num3: 1, esperado: 1, observacion: "Incluye cero" }
+    ];
+
+    function ejecutarPruebas() {
+      const resultadosDiv = document.getElementById('resultados');
+      let pasadas = 0;
+      let fallidas = 0;
+
+      casosPrueba.forEach((caso, index) => {
+        const resultado = mayorTest.calcularMayor(caso.num1, caso.num2, caso.num3);
+        const paso = resultado === caso.esperado;
+
+        if (paso) {
+          pasadas++;
+        } else {
+          fallidas++;
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3 rounded ${paso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        div.innerHTML = `
+          <strong>${paso ? '✅' : '❌'} ${caso.nombre}</strong><br>
+          Entrada: ${caso.num1}, ${caso.num2}, ${caso.num3}<br>
+          Esperado: ${caso.esperado}<br>
+          Obtenido: ${resultado}<br>
+          <em>${caso.observacion}</em>
+        `;
+        resultadosDiv.appendChild(div);
+      });
+
+      const resumenDiv = document.getElementById('resumen');
+      resumenDiv.className = `mt-4 p-4 rounded ${fallidas === 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`;
+      resumenDiv.innerHTML = `
+        📊 <strong>Resumen:</strong> ${pasadas} pruebas pasadas, ${fallidas} pruebas fallidas de ${casosPrueba.length} totales
+      `;
+    }
+
+    // Ejecutar pruebas al cargar la página
+    window.onload = ejecutarPruebas;
+  </script>
+</body>
+</html>

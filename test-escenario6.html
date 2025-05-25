@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba - Escenario 6: MCD y MCM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Casos de Prueba - Escenario 6: MCD y MCM</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Resultados de las Pruebas</h2>
+      <div id="resultados" class="space-y-2"></div>
+      <div id="resumen" class="mt-4 p-4 rounded font-semibold"></div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Casos de Prueba Definidos</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="border border-gray-300 p-2">Caso</th>
+              <th class="border border-gray-300 p-2">Número A</th>
+              <th class="border border-gray-300 p-2">Número B</th>
+              <th class="border border-gray-300 p-2">MCD Esperado</th>
+              <th class="border border-gray-300 p-2">MCM Esperado</th>
+              <th class="border border-gray-300 p-2">Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-gray-300 p-2">Números primos</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">13</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">91</td><td class="border border-gray-300 p-2">Sin factores comunes</td></tr>
+            <tr><td class="border border-gray-300 p-2">Factores comunes</td><td class="border border-gray-300 p-2">12</td><td class="border border-gray-300 p-2">18</td><td class="border border-gray-300 p-2">6</td><td class="border border-gray-300 p-2">36</td><td class="border border-gray-300 p-2">Múltiplos de 6</td></tr>
+            <tr><td class="border border-gray-300 p-2">Múltiplos de 5</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">25</td><td class="border border-gray-300 p-2">5</td><td class="border border-gray-300 p-2">75</td><td class="border border-gray-300 p-2">Factor común 5</td></tr>
+            <tr><td class="border border-gray-300 p-2">Uno múltiplo del otro</td><td class="border border-gray-300 p-2">24</td><td class="border border-gray-300 p-2">36</td><td class="border border-gray-300 p-2">12</td><td class="border border-gray-300 p-2">72</td><td class="border border-gray-300 p-2">36 = 24 × 1.5</td></tr>
+            <tr><td class="border border-gray-300 p-2">Números iguales</td><td class="border border-gray-300 p-2">20</td><td class="border border-gray-300 p-2">20</td><td class="border border-gray-300 p-2">20</td><td class="border border-gray-300 p-2">20</td><td class="border border-gray-300 p-2">Idénticos</td></tr>
+            <tr><td class="border border-gray-300 p-2">Uno es 1</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">15</td><td class="border border-gray-300 p-2">MCD siempre 1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Potencias de 2</td><td class="border border-gray-300 p-2">8</td><td class="border border-gray-300 p-2">16</td><td class="border border-gray-300 p-2">8</td><td class="border border-gray-300 p-2">16</td><td class="border border-gray-300 p-2">16 = 8 × 2</td></tr>
+            <tr><td class="border border-gray-300 p-2">Números grandes</td><td class="border border-gray-300 p-2">48</td><td class="border border-gray-300 p-2">72</td><td class="border border-gray-300 p-2">24</td><td class="border border-gray-300 p-2">144</td><td class="border border-gray-300 p-2">Múltiplos de 24</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class McdMcmTest {
+      calcular(a, b) {
+        const mcd = (x, y) => y === 0 ? x : mcd(y, x % y);
+        const resultadoMCD = mcd(a, b);
+        const resultadoMCM = (a * b) / resultadoMCD;
+        return {
+          mcd: resultadoMCD,
+          mcm: resultadoMCM
+        };
+      }
+    }
+
+    const mcdmcmTest = new McdMcmTest();
+    
+    const casosPrueba = [
+      { nombre: "Números primos", a: 7, b: 13, esperado: { mcd: 1, mcm: 91 }, observacion: "Sin factores comunes" },
+      { nombre: "Factores comunes", a: 12, b: 18, esperado: { mcd: 6, mcm: 36 }, observacion: "Múltiplos de 6" },
+      { nombre: "Múltiplos de 5", a: 15, b: 25, esperado: { mcd: 5, mcm: 75 }, observacion: "Factor común 5" },
+      { nombre: "Uno múltiplo del otro", a: 24, b: 36, esperado: { mcd: 12, mcm: 72 }, observacion: "36 = 24 × 1.5" },
+      { nombre: "Números iguales", a: 20, b: 20, esperado: { mcd: 20, mcm: 20 }, observacion: "Idénticos" },
+      { nombre: "Uno es 1", a: 1, b: 15, esperado: { mcd: 1, mcm: 15 }, observacion: "MCD siempre 1" },
+      { nombre: "Potencias de 2", a: 8, b: 16, esperado: { mcd: 8, mcm: 16 }, observacion: "16 = 8 × 2" },
+      { nombre: "Números grandes", a: 48, b: 72, esperado: { mcd: 24, mcm: 144 }, observacion: "Múltiplos de 24" },
+      { nombre: "Consecutivos", a: 14, b: 15, esperado: { mcd: 1, mcm: 210 }, observacion: "Números consecutivos" },
+      { nombre: "Múltiplos de 3", a: 9, b: 21, esperado: { mcd: 3, mcm: 63 }, observacion: "Factor común 3" },
+      { nombre: "Orden inverso", a: 18, b: 12, esperado: { mcd: 6, mcm: 36 }, observacion: "Mismo resultado que 12,18" },
+      { nombre: "Números pequeños", a: 2, b: 3, esperado: { mcd: 1, mcm: 6 }, observacion: "Primos pequeños" }
+    ];
+
+    function ejecutarPruebas() {
+      const resultadosDiv = document.getElementById('resultados');
+      let pasadas = 0;
+      let fallidas = 0;
+
+      casosPrueba.forEach((caso, index) => {
+        const resultado = mcdmcmTest.calcular(caso.a, caso.b);
+        const pasoMCD = resultado.mcd === caso.esperado.mcd;
+        const pasoMCM = resultado.mcm === caso.esperado.mcm;
+        const paso = pasoMCD && pasoMCM;
+
+        if (paso) {
+          pasadas++;
+        } else {
+          fallidas++;
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3 rounded ${paso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        div.innerHTML = `
+          <strong>${paso ? '✅' : '❌'} ${caso.nombre}</strong><br>
+          Entrada: A=${caso.a}, B=${caso.b}<br>
+          <strong>MCD:</strong> Esperado=${caso.esperado.mcd} | Obtenido=${resultado.mcd} ${pasoMCD ? '✅' : '❌'}<br>
+          <strong>MCM:</strong> Esperado=${caso.esperado.mcm} | Obtenido=${resultado.mcm} ${pasoMCM ? '✅' : '❌'}<br>
+          <em>${caso.observacion}</em>
+        `;
+        resultadosDiv.appendChild(div);
+      });
+
+      const resumenDiv = document.getElementById('resumen');
+      resumenDiv.className = `mt-4 p-4 rounded ${fallidas === 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`;
+      resumenDiv.innerHTML = `
+        📊 <strong>Resumen:</strong> ${pasadas} pruebas pasadas, ${fallidas} pruebas fallidas de ${casosPrueba.length} totales
+      `;
+    }
+
+    // Ejecutar pruebas al cargar la página
+    window.onload = ejecutarPruebas;
+  </script>
+</body>
+</html>

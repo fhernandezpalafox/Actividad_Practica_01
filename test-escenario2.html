@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba - Escenario 2: Días del Mes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Casos de Prueba - Escenario 2: Días del Mes</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Resultados de las Pruebas</h2>
+      <div id="resultados" class="space-y-2"></div>
+      <div id="resumen" class="mt-4 p-4 rounded font-semibold"></div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Casos de Prueba Definidos</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="border border-gray-300 p-2">Caso</th>
+              <th class="border border-gray-300 p-2">Mes</th>
+              <th class="border border-gray-300 p-2">Año</th>
+              <th class="border border-gray-300 p-2">Días Esperados</th>
+              <th class="border border-gray-300 p-2">Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-gray-300 p-2">Enero normal</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">2023</td><td class="border border-gray-300 p-2">31</td><td class="border border-gray-300 p-2">Mes de 31 días</td></tr>
+            <tr><td class="border border-gray-300 p-2">Febrero normal</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">2023</td><td class="border border-gray-300 p-2">28</td><td class="border border-gray-300 p-2">Año no bisiesto</td></tr>
+            <tr><td class="border border-gray-300 p-2">Febrero bisiesto</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">2024</td><td class="border border-gray-300 p-2">29</td><td class="border border-gray-300 p-2">Año bisiesto</td></tr>
+            <tr><td class="border border-gray-300 p-2">Febrero 2000</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">2000</td><td class="border border-gray-300 p-2">29</td><td class="border border-gray-300 p-2">Múltiplo de 400</td></tr>
+            <tr><td class="border border-gray-300 p-2">Febrero 1900</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">1900</td><td class="border border-gray-300 p-2">28</td><td class="border border-gray-300 p-2">Múltiplo de 100 pero no 400</td></tr>
+            <tr><td class="border border-gray-300 p-2">Abril</td><td class="border border-gray-300 p-2">4</td><td class="border border-gray-300 p-2">2023</td><td class="border border-gray-300 p-2">30</td><td class="border border-gray-300 p-2">Mes de 30 días</td></tr>
+            <tr><td class="border border-gray-300 p-2">Julio</td><td class="border border-gray-300 p-2">7</td><td class="border border-gray-300 p-2">2023</td><td class="border border-gray-300 p-2">31</td><td class="border border-gray-300 p-2">Mes de 31 días</td></tr>
+            <tr><td class="border border-gray-300 p-2">Diciembre</td><td class="border border-gray-300 p-2">12</td><td class="border border-gray-300 p-2">2023</td><td class="border border-gray-300 p-2">31</td><td class="border border-gray-300 p-2">Último mes del año</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class FechaTest {
+      obtenerDiasMes(mes, anio) {
+        const esBisiesto = (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+        let dias;
+        
+        if ([1, 3, 5, 7, 8, 10, 12].includes(mes)) {
+          dias = 31;
+        } else if ([4, 6, 9, 11].includes(mes)) {
+          dias = 30;
+        } else if (mes === 2) {
+          dias = esBisiesto ? 29 : 28;
+        }
+        
+        return {
+          dias: dias,
+          esBisiesto: esBisiesto
+        };
+      }
+    }
+
+    const fechaTest = new FechaTest();
+    
+    const casosPrueba = [
+      { nombre: "Enero normal", mes: 1, anio: 2023, esperado: 31, observacion: "Mes de 31 días" },
+      { nombre: "Febrero normal", mes: 2, anio: 2023, esperado: 28, observacion: "Año no bisiesto" },
+      { nombre: "Febrero bisiesto", mes: 2, anio: 2024, esperado: 29, observacion: "Año bisiesto" },
+      { nombre: "Febrero 2000", mes: 2, anio: 2000, esperado: 29, observacion: "Múltiplo de 400" },
+      { nombre: "Febrero 1900", mes: 2, anio: 1900, esperado: 28, observacion: "Múltiplo de 100 pero no 400" },
+      { nombre: "Marzo", mes: 3, anio: 2023, esperado: 31, observacion: "Mes de 31 días" },
+      { nombre: "Abril", mes: 4, anio: 2023, esperado: 30, observacion: "Mes de 30 días" },
+      { nombre: "Mayo", mes: 5, anio: 2023, esperado: 31, observacion: "Mes de 31 días" },
+      { nombre: "Junio", mes: 6, anio: 2023, esperado: 30, observacion: "Mes de 30 días" },
+      { nombre: "Julio", mes: 7, anio: 2023, esperado: 31, observacion: "Mes de 31 días" },
+      { nombre: "Agosto", mes: 8, anio: 2023, esperado: 31, observacion: "Mes de 31 días" },
+      { nombre: "Septiembre", mes: 9, anio: 2023, esperado: 30, observacion: "Mes de 30 días" },
+      { nombre: "Octubre", mes: 10, anio: 2023, esperado: 31, observacion: "Mes de 31 días" },
+      { nombre: "Noviembre", mes: 11, anio: 2023, esperado: 30, observacion: "Mes de 30 días" },
+      { nombre: "Diciembre", mes: 12, anio: 2023, esperado: 31, observacion: "Último mes del año" }
+    ];
+
+    function ejecutarPruebas() {
+      const resultadosDiv = document.getElementById('resultados');
+      let pasadas = 0;
+      let fallidas = 0;
+
+      casosPrueba.forEach((caso, index) => {
+        const resultado = fechaTest.obtenerDiasMes(caso.mes, caso.anio);
+        const paso = resultado.dias === caso.esperado;
+
+        if (paso) {
+          pasadas++;
+        } else {
+          fallidas++;
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3 rounded ${paso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        div.innerHTML = `
+          <strong>${paso ? '✅' : '❌'} ${caso.nombre}</strong><br>
+          Entrada: Mes ${caso.mes}, Año ${caso.anio}<br>
+          Esperado: ${caso.esperado} días<br>
+          Obtenido: ${resultado.dias} días<br>
+          <em>${caso.observacion}</em>
+        `;
+        resultadosDiv.appendChild(div);
+      });
+
+      const resumenDiv = document.getElementById('resumen');
+      resumenDiv.className = `mt-4 p-4 rounded ${fallidas === 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`;
+      resumenDiv.innerHTML = `
+        📊 <strong>Resumen:</strong> ${pasadas} pruebas pasadas, ${fallidas} pruebas fallidas de ${casosPrueba.length} totales
+      `;
+    }
+
+    // Ejecutar pruebas al cargar la página
+    window.onload = ejecutarPruebas;
+  </script>
+</body>
+</html>

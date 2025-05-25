@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba - Escenario 7: Números Primos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Casos de Prueba - Escenario 7: Números Primos</h1>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Resultados de las Pruebas</h2>
+      <div id="resultados" class="space-y-2"></div>
+      <div id="resumen" class="mt-4 p-4 rounded font-semibold"></div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Casos de Prueba Definidos</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300 text-sm">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="border border-gray-300 p-2">Caso</th>
+              <th class="border border-gray-300 p-2">Límite</th>
+              <th class="border border-gray-300 p-2">Primos Esperados</th>
+              <th class="border border-gray-300 p-2">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-gray-300 p-2">Límite 1</td><td class="border border-gray-300 p-2">1</td><td class="border border-gray-300 p-2">[]</td><td class="border border-gray-300 p-2">0</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 2</td><td class="border border-gray-300 p-2">2</td><td class="border border-gray-300 p-2">[2]</td><td class="border border-gray-300 p-2">1</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 10</td><td class="border border-gray-300 p-2">10</td><td class="border border-gray-300 p-2">[2, 3, 5, 7]</td><td class="border border-gray-300 p-2">4</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 20</td><td class="border border-gray-300 p-2">20</td><td class="border border-gray-300 p-2">[2, 3, 5, 7, 11, 13, 17, 19]</td><td class="border border-gray-300 p-2">8</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 30</td><td class="border border-gray-300 p-2">30</td><td class="border border-gray-300 p-2">[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]</td><td class="border border-gray-300 p-2">10</td></tr>
+            <tr><td class="border border-gray-300 p-2">Límite 50</td><td class="border border-gray-300 p-2">50</td><td class="border border-gray-300 p-2">[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]</td><td class="border border-gray-300 p-2">15</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class PrimosTest {
+      calcular(n) {
+        const esPrimo = num => {
+          if (num < 2) return false;
+          for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+          }
+          return true;
+        };
+        const lista = [];
+        for (let i = 1; i <= n; i++) {
+          if (esPrimo(i)) lista.push(i);
+        }
+        return lista;
+      }
+    }
+
+    const primosTest = new PrimosTest();
+    
+    const casosPrueba = [
+      { 
+        nombre: "Límite 1", 
+        limite: 1, 
+        esperado: [], 
+        cantidad: 0 
+      },
+      { 
+        nombre: "Límite 2", 
+        limite: 2, 
+        esperado: [2], 
+        cantidad: 1 
+      },
+      { 
+        nombre: "Límite 3", 
+        limite: 3, 
+        esperado: [2, 3], 
+        cantidad: 2 
+      },
+      { 
+        nombre: "Límite 5", 
+        limite: 5, 
+        esperado: [2, 3, 5], 
+        cantidad: 3 
+      },
+      { 
+        nombre: "Límite 10", 
+        limite: 10, 
+        esperado: [2, 3, 5, 7], 
+        cantidad: 4 
+      },
+      { 
+        nombre: "Límite 15", 
+        limite: 15, 
+        esperado: [2, 3, 5, 7, 11, 13], 
+        cantidad: 6 
+      },
+      { 
+        nombre: "Límite 20", 
+        limite: 20, 
+        esperado: [2, 3, 5, 7, 11, 13, 17, 19], 
+        cantidad: 8 
+      },
+      { 
+        nombre: "Límite 25", 
+        limite: 25, 
+        esperado: [2, 3, 5, 7, 11, 13, 17, 19, 23], 
+        cantidad: 9 
+      },
+      { 
+        nombre: "Límite 30", 
+        limite: 30, 
+        esperado: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 
+        cantidad: 10 
+      },
+      { 
+        nombre: "Límite 50", 
+        limite: 50, 
+        esperado: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47], 
+        cantidad: 15 
+      },
+      { 
+        nombre: "Límite 100", 
+        limite: 100, 
+        esperado: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97], 
+        cantidad: 25 
+      }
+    ];
+
+    function arraysIguales(arr1, arr2) {
+      if (arr1.length !== arr2.length) return false;
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) return false;
+      }
+      return true;
+    }
+
+    function ejecutarPruebas() {
+      const resultadosDiv = document.getElementById('resultados');
+      let pasadas = 0;
+      let fallidas = 0;
+
+      casosPrueba.forEach((caso, index) => {
+        const resultado = primosTest.calcular(caso.limite);
+        const pasoLista = arraysIguales(resultado, caso.esperado);
+        const pasoCantidad = resultado.length === caso.cantidad;
+        const paso = pasoLista && pasoCantidad;
+
+        if (paso) {
+          pasadas++;
+        } else {
+          fallidas++;
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-3 rounded ${paso ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        
+        // Truncar listas muy largas para mostrar
+        const esperadoStr = caso.esperado.length > 10 ? 
+          `[${caso.esperado.slice(0, 10).join(', ')}, ...]` : 
+          `[${caso.esperado.join(', ')}]`;
+        const obtenidoStr = resultado.length > 10 ? 
+          `[${resultado.slice(0, 10).join(', ')}, ...]` : 
+          `[${resultado.join(', ')}]`;
+
+        div.innerHTML = `
+          <strong>${paso ? '✅' : '❌'} ${caso.nombre}</strong><br>
+          Entrada: Límite=${caso.limite}<br>
+          <strong>Lista:</strong> Esperado=${esperadoStr} | Obtenido=${obtenidoStr} ${pasoLista ? '✅' : '❌'}<br>
+          <strong>Cantidad:</strong> Esperado=${caso.cantidad} | Obtenido=${resultado.length} ${pasoCantidad ? '✅' : '❌'}
+        `;
+        resultadosDiv.appendChild(div);
+      });
+
+      const resumenDiv = document.getElementById('resumen');
+      resumenDiv.className = `mt-4 p-4 rounded ${fallidas === 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`;
+      resumenDiv.innerHTML = `
+        📊 <strong>Resumen:</strong> ${pasadas} pruebas pasadas, ${fallidas} pruebas fallidas de ${casosPrueba.length} totales
+      `;
+    }
+
+    // Ejecutar pruebas al cargar la página
+    window.onload = ejecutarPruebas;
+  </script>
+</body>
+</html>

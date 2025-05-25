@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad Práctica - Fundamentos de Programación</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans p-8">
+  <div class="max-w-3xl mx-auto space-y-12">
+
+    <!-- Escenario 1 -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 1: Descuento en tienda</h1>
+      <div class="space-y-2">
+        <input id="cantidad" type="number" placeholder="Cantidad" class="w-full border p-2 rounded" />
+        <input id="precio" type="number" placeholder="Precio Unitario" class="w-full border p-2 rounded" />
+        <button onclick="descuento.calcular()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Calcular</button>
+        <div id="resultado1" class="mt-4 text-green-700 font-medium"></div>
+      </div>
+    </section>
+
+    <!-- Escenario 2 -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 2: Días del mes</h1>
+      <div class="space-y-2">
+        <input id="mes" type="number" placeholder="Mes (1-12)" class="w-full border p-2 rounded" />
+        <input id="anio" type="number" placeholder="Año" class="w-full border p-2 rounded" />
+        <button onclick="fecha.obtenerDiasMes()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Obtener Días</button>
+        <div id="resultado2" class="mt-4 text-green-700 font-medium"></div>
+      </div>
+    </section>
+
+    <!-- Escenario 3 -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 3: Número mayor</h1>
+      <div class="space-y-2">
+        <input id="n1" type="number" placeholder="Número 1" class="w-full border p-2 rounded" />
+        <input id="n2" type="number" placeholder="Número 2" class="w-full border p-2 rounded" />
+        <input id="n3" type="number" placeholder="Número 3" class="w-full border p-2 rounded" />
+        <button onclick="mayor.calcularMayor()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Calcular Mayor</button>
+        <div id="resultado3" class="mt-4 text-green-700 font-medium"></div>
+      </div>
+    </section>
+
+    <!-- Escenario 4: Rango, pares e impares -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 4: Rango, pares e impares</h1>
+      <div class="space-y-2">
+        <input id="r1" type="number" placeholder="Número A" class="w-full border p-2 rounded" />
+        <input id="r2" type="number" placeholder="Número B" class="w-full border p-2 rounded" />
+        <button onclick="rango.generarListas()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Generar Listas</button>
+        <div id="resultado4" class="mt-4 text-green-700 font-medium whitespace-pre-wrap"></div>
+      </div>
+    </section>
+
+    <!-- Escenario 5: Factorial -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 5: Factorial</h1>
+      <div class="space-y-2">
+        <input id="fact" type="number" placeholder="Número" class="w-full border p-2 rounded" />
+        <button onclick="factorial.calcular()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Calcular Factorial</button>
+        <div id="resultado5" class="mt-4 text-green-700 font-medium"></div>
+      </div>
+    </section>
+
+    <!-- Escenario 6: MCD y MCM -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 6: MCD y MCM</h1>
+      <div class="space-y-2">
+        <input id="mcd1" type="number" placeholder="Número A" class="w-full border p-2 rounded" />
+        <input id="mcd2" type="number" placeholder="Número B" class="w-full border p-2 rounded" />
+        <button onclick="mcdmcm.calcular()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Calcular MCD y MCM</button>
+        <div id="resultado6" class="mt-4 text-green-700 font-medium"></div>
+      </div>
+    </section>
+
+    <!-- Escenario 7: Números primos -->
+    <section class="bg-white p-6 rounded-xl shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Escenario 7: Números primos</h1>
+      <div class="space-y-2">
+        <input id="primos" type="number" placeholder="Número límite" class="w-full border p-2 rounded" />
+        <button onclick="primos.calcular()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Listar Primos</button>
+        <div id="resultado7" class="mt-4 text-green-700 font-medium whitespace-pre-wrap"></div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module">
+    class Descuento {
+      calcular() {
+        const cantidad = parseInt(document.getElementById('cantidad').value);
+        const precio = parseFloat(document.getElementById('precio').value);
+
+        if (isNaN(cantidad) || isNaN(precio) || cantidad <= 0 || precio <= 0) {
+          document.getElementById('resultado1').textContent = 'Por favor ingrese valores válidos';
+          return;
+        }
+
+        const subtotal = cantidad * precio;
+        let porcentajeDescuento = 0;
+
+        if (cantidad > 100) {
+          porcentajeDescuento = 0.40;
+        } else if (cantidad >= 25) {
+          porcentajeDescuento = 0.20;
+        } else if (cantidad >= 10) {
+          porcentajeDescuento = 0.10;
+        }
+
+        const descuento = subtotal * porcentajeDescuento;
+        const total = subtotal - descuento;
+
+        document.getElementById('resultado1').innerHTML = `
+          <strong>Desglose del pago:</strong><br>
+          Subtotal: $${subtotal.toFixed(2)}<br>
+          Descuento (${(porcentajeDescuento * 100)}%): $${descuento.toFixed(2)}<br>
+          <strong>Total a pagar: $${total.toFixed(2)}</strong>
+        `;
+      }
+    }
+
+    class Fecha {
+      obtenerDiasMes() {
+        const mes = parseInt(document.getElementById('mes').value);
+        const anio = parseInt(document.getElementById('anio').value);
+
+        if (isNaN(mes) || isNaN(anio) || mes < 1 || mes > 12 || anio <= 0) {
+          document.getElementById('resultado2').textContent = 'Por favor ingrese un mes válido (1-12) y un año válido';
+          return;
+        }
+
+        const esBisiesto = (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+        let dias;
+
+        if ([1, 3, 5, 7, 8, 10, 12].includes(mes)) {
+          dias = 31;
+        } else if ([4, 6, 9, 11].includes(mes)) {
+          dias = 30;
+        } else if (mes === 2) {
+          dias = esBisiesto ? 29 : 28;
+        }
+
+        const nombresMeses = [
+          '', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        document.getElementById('resultado2').innerHTML = `
+          <strong>${nombresMeses[mes]} de ${anio} tiene ${dias} días</strong><br>
+          ${mes === 2 ? (esBisiesto ? '(Año bisiesto)' : '(Año normal)') : ''}
+        `;
+      }
+    }
+
+    class Mayor {
+      calcularMayor() {
+        const num1 = parseInt(document.getElementById('n1').value);
+        const num2 = parseInt(document.getElementById('n2').value);
+        const num3 = parseInt(document.getElementById('n3').value);
+
+        if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+          document.getElementById('resultado3').textContent = 'Por favor ingrese tres números válidos';
+          return;
+        }
+
+        let mayor = num1;
+        if (num2 > mayor) {
+          mayor = num2;
+        }
+        if (num3 > mayor) {
+          mayor = num3;
+        }
+
+        document.getElementById('resultado3').innerHTML = `
+          <strong>El número mayor es: ${mayor}</strong><br>
+          Números ingresados: ${num1}, ${num2}, ${num3}
+        `;
+      }
+    }
+
+    class Rango {
+      generarListas() {
+        const a = parseInt(document.getElementById('r1').value);
+        const b = parseInt(document.getElementById('r2').value);
+        const menor = Math.min(a, b);
+        const mayor = Math.max(a, b);
+
+        const ascendente = [];
+        for (let i = menor; i <= mayor; i++) ascendente.push(i);
+
+        const pares = [];
+        for (let i = mayor; i >= menor; i--) if (i % 2 === 0) pares.push(i);
+
+        const impares = [];
+        for (let i = mayor; i >= menor; i--) if (i % 2 !== 0) impares.push(i);
+
+        document.getElementById('resultado4').textContent =
+          `Ascendente: ${ascendente.join(', ')}\nPares descendente: ${pares.join(', ')}\nImpares descendente: ${impares.join(', ')}`;
+      }
+    }
+
+    class Factorial {
+      calcular() {
+        const n = parseInt(document.getElementById('fact').value);
+        let resultado = 1;
+        for (let i = 1; i <= n; i++) resultado *= i;
+        document.getElementById('resultado5').textContent = `El factorial de ${n} es ${resultado}`;
+      }
+    }
+
+    class McdMcm {
+      calcular() {
+        const a = parseInt(document.getElementById('mcd1').value);
+        const b = parseInt(document.getElementById('mcd2').value);
+        const mcd = (x, y) => y === 0 ? x : mcd(y, x % y);
+        const resultadoMCD = mcd(a, b);
+        const resultadoMCM = (a * b) / resultadoMCD;
+        document.getElementById('resultado6').textContent = `MCD: ${resultadoMCD}, MCM: ${resultadoMCM}`;
+      }
+    }
+
+    class Primos {
+      calcular() {
+        const n = parseInt(document.getElementById('primos').value);
+        const esPrimo = num => {
+          if (num < 2) return false;
+          for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+          }
+          return true;
+        };
+        const lista = [];
+        for (let i = 1; i <= n; i++) if (esPrimo(i)) lista.push(i);
+        document.getElementById('resultado7').textContent = `Primos hasta ${n}:\n${lista.join(', ')}`;
+      }
+    }
+
+    window.descuento = new Descuento();
+    window.fecha = new Fecha();
+    window.mayor = new Mayor();
+    window.rango = new Rango();
+    window.factorial = new Factorial();
+    window.mcdmcm = new McdMcm();
+    window.primos = new Primos();
+  </script>
+</body>
+</html>
