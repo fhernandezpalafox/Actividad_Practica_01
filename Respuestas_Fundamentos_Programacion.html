@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de Programación - Respuestas Completas</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            margin: 2cm;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 20px;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        .analysis-section {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .requirements-list {
+            background-color: #f0f8f0;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .variables-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .variables-table th, .variables-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .variables-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .test-cases {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .screenshot-placeholder {
+            background-color: #f8f9fa;
+            border: 2px dashed #6c757d;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            color: #6c757d;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fundamentos de Programación<br>Respuestas Completas a los Escenarios</h1>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <p><strong>Estudiante:</strong> [Nombre del Estudiante]</p>
+        <p><strong>Fecha:</strong> [Fecha de Entrega]</p>
+        <p><strong>Materia:</strong> Fundamentos de Programación</p>
+    </div>
+
+    <h2>Escenario 1: Sistema de Descuentos en Tienda de Abarrotes</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere desarrollar una aplicación que calcule el desglose del pago de un cliente aplicando descuentos según la cantidad de unidades compradas.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir cantidad de unidades (número entero positivo)</li>
+            <li>Recibir precio unitario del producto</li>
+            <li>Calcular subtotal (cantidad × precio)</li>
+            <li>Aplicar descuento según reglas establecidas</li>
+            <li>Mostrar desglose: subtotal, descuento, total a pagar</li>
+        </ul>
+
+        <h4>Reglas de Negocio:</h4>
+        <ul>
+            <li>Más de 100 unidades: 40% de descuento</li>
+            <li>Entre 25 y 100 unidades: 20% de descuento</li>
+            <li>Entre 10 y 24 unidades: 10% de descuento</li>
+            <li>Menos de 10 unidades: Sin descuento</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>cantidad</td>
+                <td>entero</td>
+                <td>Número de unidades a comprar</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>precio</td>
+                <td>decimal</td>
+                <td>Precio unitario del producto</td>
+                <td>15.50</td>
+            </tr>
+            <tr>
+                <td>subtotal</td>
+                <td>decimal</td>
+                <td>Cantidad × precio</td>
+                <td>775.00</td>
+            </tr>
+            <tr>
+                <td>porcentajeDescuento</td>
+                <td>decimal</td>
+                <td>Porcentaje a aplicar (0.0 a 0.4)</td>
+                <td>0.20</td>
+            </tr>
+            <tr>
+                <td>descuento</td>
+                <td>decimal</td>
+                <td>Monto del descuento</td>
+                <td>155.00</td>
+            </tr>
+            <tr>
+                <td>total</td>
+                <td>decimal</td>
+                <td>Subtotal - descuento</td>
+                <td>620.00</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Proceso de Desarrollo</h3>
+    <p>El desarrollo siguió una metodología estructurada:</p>
+    <ol>
+        <li><strong>Análisis del problema:</strong> Identificación de entradas, procesos y salidas</li>
+        <li><strong>Diseño de la lógica:</strong> Estructuras condicionales anidadas para aplicar descuentos</li>
+        <li><strong>Implementación:</strong> Codificación usando JavaScript con validaciones</li>
+        <li><strong>Pruebas:</strong> Casos de prueba para cada rango de descuento</li>
+    </ol>
+
+    <h3>Instrucciones Condicionales</h3>
+    <p>Se utilizó una estructura <code>if-else if-else</code> para implementar las reglas de descuento:</p>
+
+    <div class="code-block">
+if (cantidad > 100) {
+    porcentajeDescuento = 0.40; // 40%
+} else if (cantidad >= 25) {
+    porcentajeDescuento = 0.20; // 20%
+} else if (cantidad >= 10) {
+    porcentajeDescuento = 0.10; // 10%
+} else {
+    porcentajeDescuento = 0;    // Sin descuento
+}
+    </div>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class Descuento {
+    calcular(cantidad, precio) {
+        // Validación de entrada
+        if (!Number.isInteger(cantidad) || cantidad <= 0) {
+            throw new Error('La cantidad debe ser un número entero positivo');
+        }
+
+        if (typeof precio !== 'number' || precio <= 0) {
+            throw new Error('El precio debe ser un número positivo');
+        }
+
+        // Cálculo del subtotal
+        const subtotal = cantidad * precio;
+        let porcentajeDescuento = 0;
+
+        // Aplicar reglas de descuento
+        if (cantidad > 100) {
+            porcentajeDescuento = 0.40; // 40%
+        } else if (cantidad >= 25) {
+            porcentajeDescuento = 0.20; // 20%
+        } else if (cantidad >= 10) {
+            porcentajeDescuento = 0.10; // 10%
+        }
+        // Si cantidad < 10, no hay descuento (0%)
+
+        // Cálculos finales
+        const descuento = subtotal * porcentajeDescuento;
+        const total = subtotal - descuento;
+
+        return {
+            subtotal: Math.round(subtotal * 100) / 100,
+            descuento: Math.round(descuento * 100) / 100,
+            total: Math.round(total * 100) / 100,
+            porcentaje: porcentajeDescuento * 100
+        };
+    }
+}
+
+// Función para la interfaz web
+function calcularDescuento() {
+    const cantidad = parseInt(document.getElementById('cantidad').value);
+    const precio = parseFloat(document.getElementById('precio').value);
+
+    try {
+        const descuento = new Descuento();
+        const resultado = descuento.calcular(cantidad, precio);
+
+        document.getElementById('resultado').innerHTML = `
+            <h3>Desglose del Pago:</h3>
+            <p>Subtotal: $${resultado.subtotal.toFixed(2)}</p>
+            <p>Descuento (${resultado.porcentaje}%): $${resultado.descuento.toFixed(2)}</p>
+            <p><strong>Total a pagar: $${resultado.total.toFixed(2)}</strong></p>
+        `;
+    } catch (error) {
+        document.getElementById('resultado').innerHTML =
+            `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Descuento</th>
+                <th>Total</th>
+                <th>Porcentaje</th>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>$10.00</td>
+                <td>$50.00</td>
+                <td>$0.00</td>
+                <td>$50.00</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>$10.00</td>
+                <td>$150.00</td>
+                <td>$15.00</td>
+                <td>$135.00</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td>$10.00</td>
+                <td>$500.00</td>
+                <td>$100.00</td>
+                <td>$400.00</td>
+                <td>20%</td>
+            </tr>
+            <tr>
+                <td>150</td>
+                <td>$10.00</td>
+                <td>$1,500.00</td>
+                <td>$600.00</td>
+                <td>$900.00</td>
+                <td>40%</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 1:</strong> Interfaz principal del sistema de descuentos</p>
+        <p>Muestra los campos de entrada para cantidad y precio unitario</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 2:</strong> Resultado del cálculo con descuento del 20%</p>
+        <p>Ejemplo: 50 unidades × $10.00 = $500.00 - $100.00 (20%) = $400.00</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Escenario 2: Calculadora de Días del Mes</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere una aplicación que determine la cantidad de días de un mes específico considerando años bisiestos.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir número del mes (1-12)</li>
+            <li>Recibir año (número entero positivo)</li>
+            <li>Determinar si el año es bisiesto</li>
+            <li>Calcular días del mes según reglas establecidas</li>
+            <li>Mostrar resultado con nombre del mes y cantidad de días</li>
+        </ul>
+
+        <h4>Reglas de Negocio:</h4>
+        <ul>
+            <li>Meses con 31 días: Enero, Marzo, Mayo, Julio, Agosto, Octubre, Diciembre</li>
+            <li>Meses con 30 días: Abril, Junio, Septiembre, Noviembre</li>
+            <li>Febrero: 28 días (29 en año bisiesto)</li>
+            <li>Año bisiesto: múltiplo de 4 y no de 100, O múltiplo de 400</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>mes</td>
+                <td>entero</td>
+                <td>Número del mes (1-12)</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>anio</td>
+                <td>entero</td>
+                <td>Año a evaluar</td>
+                <td>2024</td>
+            </tr>
+            <tr>
+                <td>esBisiesto</td>
+                <td>booleano</td>
+                <td>Indica si el año es bisiesto</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>dias</td>
+                <td>entero</td>
+                <td>Número de días del mes</td>
+                <td>29</td>
+            </tr>
+            <tr>
+                <td>nombreMes</td>
+                <td>cadena</td>
+                <td>Nombre del mes</td>
+                <td>"Febrero"</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Lógica de Años Bisiestos</h3>
+    <p>La determinación de años bisiestos sigue una lógica específica implementada con operadores lógicos:</p>
+
+    <div class="code-block">
+const esBisiesto = (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+    </div>
+
+    <p>Esta expresión evalúa:</p>
+    <ul>
+        <li><strong>Condición 1:</strong> Es múltiplo de 4 Y no es múltiplo de 100</li>
+        <li><strong>Condición 2:</strong> Es múltiplo de 400</li>
+        <li><strong>Resultado:</strong> Si cualquiera de las dos condiciones es verdadera, es bisiesto</li>
+    </ul>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class Fecha {
+    obtenerDiasMes(mes, anio) {
+        // Validación de entrada
+        if (!Number.isInteger(mes) || mes < 1 || mes > 12) {
+            throw new Error('El mes debe ser un número entero entre 1 y 12');
+        }
+
+        if (!Number.isInteger(anio) || anio <= 0) {
+            throw new Error('El año debe ser un número entero positivo');
+        }
+
+        // Determinar si es año bisiesto
+        const esBisiesto = this.esAnioBisiesto(anio);
+        let dias;
+
+        // Determinar días según el mes
+        if ([1, 3, 5, 7, 8, 10, 12].includes(mes)) {
+            dias = 31;
+        } else if ([4, 6, 9, 11].includes(mes)) {
+            dias = 30;
+        } else if (mes === 2) {
+            dias = esBisiesto ? 29 : 28;
+        }
+
+        // Array con nombres de meses
+        const nombresMeses = [
+            '', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        return {
+            dias: dias,
+            esBisiesto: esBisiesto,
+            nombreMes: nombresMeses[mes],
+            anio: anio
+        };
+    }
+
+    esAnioBisiesto(anio) {
+        // Un año es bisiesto si:
+        // - Es múltiplo de 4 Y no es múltiplo de 100, O
+        // - Es múltiplo de 400
+        return (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+    }
+}
+
+// Función para la interfaz web
+function calcularDiasMes() {
+    const mes = parseInt(document.getElementById('mes').value);
+    const anio = parseInt(document.getElementById('anio').value);
+
+    try {
+        const fecha = new Fecha();
+        const resultado = fecha.obtenerDiasMes(mes, anio);
+
+        document.getElementById('resultado').innerHTML = `
+            <h3>Resultado:</h3>
+            <p><strong>${resultado.nombreMes} de ${resultado.anio} tiene ${resultado.dias} días</strong></p>
+            ${mes === 2 ? `<p><em>${resultado.esBisiesto ? '(Año bisiesto)' : '(Año normal)'}</em></p>` : ''}
+        `;
+    } catch (error) {
+        document.getElementById('resultado').innerHTML =
+            `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Mes</th>
+                <th>Año</th>
+                <th>Días</th>
+                <th>Observación</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2024</td>
+                <td>29</td>
+                <td>Año bisiesto (múltiplo de 4)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2023</td>
+                <td>28</td>
+                <td>Año normal</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2000</td>
+                <td>29</td>
+                <td>Año bisiesto (múltiplo de 400)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1900</td>
+                <td>28</td>
+                <td>No bisiesto (múltiplo de 100 pero no de 400)</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>2023</td>
+                <td>30</td>
+                <td>Abril siempre tiene 30 días</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>2023</td>
+                <td>31</td>
+                <td>Julio siempre tiene 31 días</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 3:</strong> Interfaz de la calculadora de días del mes</p>
+        <p>Muestra campos para ingresar mes y año</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 4:</strong> Resultado para febrero de 2024 (año bisiesto)</p>
+        <p>Muestra: "Febrero de 2024 tiene 29 días (Año bisiesto)"</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Escenario 3: Encontrar el Número Mayor</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere una aplicación que determine cuál es el mayor de tres números enteros positivos.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir tres números enteros positivos</li>
+            <li>Comparar los tres números</li>
+            <li>Determinar cuál es el mayor</li>
+            <li>Mostrar el resultado en pantalla</li>
+            <li>Manejar casos de empate (números iguales)</li>
+        </ul>
+
+        <h4>Casos Especiales a Considerar:</h4>
+        <ul>
+            <li>Los tres números son iguales</li>
+            <li>Dos números son iguales y mayores que el tercero</li>
+            <li>Validación de entrada para números positivos</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>num1</td>
+                <td>entero</td>
+                <td>Primer número a comparar</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>num2</td>
+                <td>entero</td>
+                <td>Segundo número a comparar</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>num3</td>
+                <td>entero</td>
+                <td>Tercer número a comparar</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>mayor</td>
+                <td>entero</td>
+                <td>El número mayor encontrado</td>
+                <td>15</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Algoritmo de Comparación</h3>
+    <p>Se utiliza un algoritmo secuencial que compara los números de forma ordenada:</p>
+
+    <div class="code-block">
+let mayor = num1;  // Asumir que el primero es el mayor
+
+if (num2 > mayor) {
+    mayor = num2;
+}
+
+if (num3 > mayor) {
+    mayor = num3;
+}
+    </div>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class Mayor {
+    calcularMayor(num1, num2, num3) {
+        // Validación de entrada
+        if (typeof num1 !== 'number' || typeof num2 !== 'number' || typeof num3 !== 'number') {
+            throw new Error('Todos los valores deben ser números');
+        }
+
+        if (num1 <= 0 || num2 <= 0 || num3 <= 0) {
+            throw new Error('Todos los números deben ser positivos');
+        }
+
+        // Algoritmo de comparación
+        let mayor = num1;
+
+        if (num2 > mayor) {
+            mayor = num2;
+        }
+
+        if (num3 > mayor) {
+            mayor = num3;
+        }
+
+        return {
+            mayor: mayor,
+            numeros: [num1, num2, num3]
+        };
+    }
+}
+
+// Función para la interfaz web
+function encontrarMayor() {
+    const num1 = parseInt(document.getElementById('num1').value);
+    const num2 = parseInt(document.getElementById('num2').value);
+    const num3 = parseInt(document.getElementById('num3').value);
+
+    try {
+        const mayorCalculator = new Mayor();
+        const resultado = mayorCalculator.calcularMayor(num1, num2, num3);
+
+        document.getElementById('resultado').innerHTML = `
+            <h3>Resultado:</h3>
+            <p>Números ingresados: ${resultado.numeros.join(', ')}</p>
+            <p><strong>El número mayor es: ${resultado.mayor}</strong></p>
+        `;
+    } catch (error) {
+        document.getElementById('resultado').innerHTML =
+            `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Número 1</th>
+                <th>Número 2</th>
+                <th>Número 3</th>
+                <th>Mayor</th>
+                <th>Observación</th>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>8</td>
+                <td>9</td>
+                <td>12</td>
+                <td>Primero es mayor</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>15</td>
+                <td>7</td>
+                <td>15</td>
+                <td>Segundo es mayor</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>3</td>
+                <td>8</td>
+                <td>8</td>
+                <td>Tercero es mayor</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>Todos iguales</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 5:</strong> Interfaz para encontrar el número mayor</p>
+        <p>Muestra tres campos de entrada para los números</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 6:</strong> Resultado mostrando el mayor de tres números</p>
+        <p>Ejemplo: Números 12, 8, 15 → El mayor es 15</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Escenario 4: Generador de Listas (Rango, Pares e Impares)</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere generar tres listas diferentes a partir de dos números: una ascendente completa, una descendente de pares y otra descendente de impares.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir dos números enteros positivos</li>
+            <li>Generar lista ascendente con todos los números del rango</li>
+            <li>Generar lista descendente con números pares del rango</li>
+            <li>Generar lista descendente con números impares del rango</li>
+            <li>Mostrar las tres listas en pantalla</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>a, b</td>
+                <td>entero</td>
+                <td>Números de entrada</td>
+                <td>3, 8</td>
+            </tr>
+            <tr>
+                <td>menor, mayor</td>
+                <td>entero</td>
+                <td>Límites del rango ordenados</td>
+                <td>3, 8</td>
+            </tr>
+            <tr>
+                <td>ascendente</td>
+                <td>array</td>
+                <td>Lista de menor a mayor</td>
+                <td>[3,4,5,6,7,8]</td>
+            </tr>
+            <tr>
+                <td>pares</td>
+                <td>array</td>
+                <td>Números pares descendente</td>
+                <td>[8,6,4]</td>
+            </tr>
+            <tr>
+                <td>impares</td>
+                <td>array</td>
+                <td>Números impares descendente</td>
+                <td>[7,5,3]</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Estructuras de Repetición</h3>
+    <p>Se utilizan tres bucles <code>for</code> diferentes para generar cada lista:</p>
+
+    <div class="code-block">
+// Lista ascendente completa
+for (let i = menor; i <= mayor; i++) {
+    ascendente.push(i);
+}
+
+// Lista descendente de pares
+for (let i = mayor; i >= menor; i--) {
+    if (i % 2 === 0) pares.push(i);
+}
+
+// Lista descendente de impares
+for (let i = mayor; i >= menor; i--) {
+    if (i % 2 !== 0) impares.push(i);
+}
+    </div>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class Rango {
+    generarListas(a, b) {
+        // Determinar menor y mayor
+        const menor = Math.min(a, b);
+        const mayor = Math.max(a, b);
+
+        // Lista ascendente completa
+        const ascendente = [];
+        for (let i = menor; i <= mayor; i++) {
+            ascendente.push(i);
+        }
+
+        // Lista descendente de pares
+        const pares = [];
+        for (let i = mayor; i >= menor; i--) {
+            if (i % 2 === 0) pares.push(i);
+        }
+
+        // Lista descendente de impares
+        const impares = [];
+        for (let i = mayor; i >= menor; i--) {
+            if (i % 2 !== 0) impares.push(i);
+        }
+
+        return {
+            ascendente: ascendente,
+            pares: pares,
+            impares: impares
+        };
+    }
+}
+
+// Función para la interfaz web
+function generarListas() {
+    const a = parseInt(document.getElementById('numeroA').value);
+    const b = parseInt(document.getElementById('numeroB').value);
+
+    const rango = new Rango();
+    const resultado = rango.generarListas(a, b);
+
+    document.getElementById('resultado').innerHTML = `
+        <h3>Listas Generadas:</h3>
+        <p><strong>Lista Ascendente:</strong> ${resultado.ascendente.join(', ')}</p>
+        <p><strong>Pares Descendente:</strong> ${resultado.pares.join(', ')}</p>
+        <p><strong>Impares Descendente:</strong> ${resultado.impares.join(', ')}</p>
+    `;
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Número A</th>
+                <th>Número B</th>
+                <th>Ascendente</th>
+                <th>Pares Desc.</th>
+                <th>Impares Desc.</th>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>8</td>
+                <td>3,4,5,6,7,8</td>
+                <td>8,6,4</td>
+                <td>7,5,3</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>15</td>
+                <td>10,11,12,13,14,15</td>
+                <td>14,12,10</td>
+                <td>15,13,11</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>5</td>
+                <td>1,2,3,4,5</td>
+                <td>4,2</td>
+                <td>5,3,1</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 7:</strong> Interfaz del generador de listas</p>
+        <p>Muestra campos para ingresar dos números</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 8:</strong> Resultado mostrando las tres listas generadas</p>
+        <p>Ejemplo: Números 3 y 8 generan las listas correspondientes</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Escenario 5: Calculadora de Factorial</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere calcular el factorial de un número entero positivo usando la fórmula n! = n × (n-1) × (n-2) × ... × 1.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir un número entero positivo</li>
+            <li>Calcular el factorial usando iteración</li>
+            <li>Mostrar el resultado en pantalla</li>
+            <li>Manejar casos especiales (0! = 1)</li>
+        </ul>
+
+        <h4>Fórmula Matemática:</h4>
+        <ul>
+            <li>n! = n × (n-1) × (n-2) × ... × 1</li>
+            <li>0! = 1 (por definición)</li>
+            <li>Ejemplo: 5! = 5 × 4 × 3 × 2 × 1 = 120</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>n</td>
+                <td>entero</td>
+                <td>Número del cual calcular factorial</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>resultado</td>
+                <td>entero</td>
+                <td>Acumulador para el factorial</td>
+                <td>120</td>
+            </tr>
+            <tr>
+                <td>i</td>
+                <td>entero</td>
+                <td>Variable de control del bucle</td>
+                <td>1, 2, 3, 4, 5</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Algoritmo Iterativo</h3>
+    <p>Se utiliza un bucle <code>for</code> para calcular el factorial de forma iterativa:</p>
+
+    <div class="code-block">
+let resultado = 1;
+for (let i = 1; i <= n; i++) {
+    resultado *= i;
+}
+    </div>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class Factorial {
+    calcular(n) {
+        // Validación de entrada
+        if (!Number.isInteger(n) || n < 0) {
+            throw new Error('El número debe ser un entero no negativo');
+        }
+
+        // Caso especial: 0! = 1
+        if (n === 0) return 1;
+
+        // Cálculo iterativo del factorial
+        let resultado = 1;
+        for (let i = 1; i <= n; i++) {
+            resultado *= i;
+        }
+
+        return resultado;
+    }
+}
+
+// Función para la interfaz web
+function calcularFactorial() {
+    const n = parseInt(document.getElementById('numero').value);
+
+    try {
+        const factorial = new Factorial();
+        const resultado = factorial.calcular(n);
+
+        document.getElementById('resultado').innerHTML = `
+            <h3>Resultado:</h3>
+            <p><strong>${n}! = ${resultado.toLocaleString()}</strong></p>
+            <p><em>Cálculo: ${n}! = ${n} × ${n-1} × ... × 1</em></p>
+        `;
+    } catch (error) {
+        document.getElementById('resultado').innerHTML =
+            `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Número</th>
+                <th>Factorial</th>
+                <th>Cálculo</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>Por definición</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>120</td>
+                <td>5×4×3×2×1</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>5,040</td>
+                <td>7×6×5×4×3×2×1</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>3,628,800</td>
+                <td>10×9×8×7×6×5×4×3×2×1</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 9:</strong> Interfaz de la calculadora de factorial</p>
+        <p>Muestra campo para ingresar el número</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 10:</strong> Resultado del factorial de 5</p>
+        <p>Muestra: "5! = 120"</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Escenario 6: Máximo Común Divisor (MCD) y Mínimo Común Múltiplo (MCM)</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere calcular el MCD y MCM de dos números enteros positivos usando el algoritmo de Euclides.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir dos números enteros positivos</li>
+            <li>Calcular el MCD usando el algoritmo de Euclides</li>
+            <li>Calcular el MCM usando la relación: MCM = (a × b) / MCD</li>
+            <li>Mostrar ambos resultados en pantalla</li>
+        </ul>
+
+        <h4>Conceptos Matemáticos:</h4>
+        <ul>
+            <li><strong>MCD:</strong> Mayor número que divide exactamente a ambos números</li>
+            <li><strong>MCM:</strong> Menor número que es múltiplo de ambos números</li>
+            <li><strong>Relación:</strong> MCD(a,b) × MCM(a,b) = a × b</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>a, b</td>
+                <td>entero</td>
+                <td>Números de entrada</td>
+                <td>12, 18</td>
+            </tr>
+            <tr>
+                <td>mcd</td>
+                <td>entero</td>
+                <td>Máximo Común Divisor</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>mcm</td>
+                <td>entero</td>
+                <td>Mínimo Común Múltiplo</td>
+                <td>36</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Algoritmo de Euclides</h3>
+    <p>Se utiliza el algoritmo de Euclides recursivo para calcular el MCD:</p>
+
+    <div class="code-block">
+const mcd = (x, y) => y === 0 ? x : mcd(y, x % y);
+const mcm = (a * b) / mcd;
+    </div>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class McdMcm {
+    calcular(a, b) {
+        // Validación de entrada
+        if (!Number.isInteger(a) || !Number.isInteger(b) || a <= 0 || b <= 0) {
+            throw new Error('Ambos números deben ser enteros positivos');
+        }
+
+        // Algoritmo de Euclides para MCD
+        const mcd = (x, y) => y === 0 ? x : mcd(y, x % y);
+
+        const resultadoMCD = mcd(a, b);
+        const resultadoMCM = (a * b) / resultadoMCD;
+
+        return {
+            mcd: resultadoMCD,
+            mcm: resultadoMCM
+        };
+    }
+}
+
+// Función para la interfaz web
+function calcularMcdMcm() {
+    const a = parseInt(document.getElementById('numeroA').value);
+    const b = parseInt(document.getElementById('numeroB').value);
+
+    try {
+        const mcdmcm = new McdMcm();
+        const resultado = mcdmcm.calcular(a, b);
+
+        document.getElementById('resultado').innerHTML = `
+            <h3>Resultado:</h3>
+            <p>Números: ${a} y ${b}</p>
+            <p><strong>MCD: ${resultado.mcd}</strong></p>
+            <p><strong>MCM: ${resultado.mcm}</strong></p>
+            <p><em>Verificación: ${resultado.mcd} × ${resultado.mcm} = ${resultado.mcd * resultado.mcm}</em></p>
+            <p><em>Original: ${a} × ${b} = ${a * b}</em></p>
+        `;
+    } catch (error) {
+        document.getElementById('resultado').innerHTML =
+            `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Número A</th>
+                <th>Número B</th>
+                <th>MCD</th>
+                <th>MCM</th>
+                <th>Observación</th>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>18</td>
+                <td>6</td>
+                <td>36</td>
+                <td>Factores comunes</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>25</td>
+                <td>5</td>
+                <td>75</td>
+                <td>Múltiplos de 5</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>13</td>
+                <td>1</td>
+                <td>91</td>
+                <td>Números primos</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>36</td>
+                <td>12</td>
+                <td>72</td>
+                <td>Uno múltiplo del otro</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 11:</strong> Interfaz para calcular MCD y MCM</p>
+        <p>Muestra campos para ingresar dos números</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 12:</strong> Resultado mostrando MCD y MCM</p>
+        <p>Ejemplo: Números 12 y 18 → MCD: 6, MCM: 36</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Escenario 7: Generador de Números Primos</h2>
+
+    <div class="analysis-section">
+        <h3>Análisis y Determinación de Requerimientos</h3>
+        <p>El problema requiere generar una lista de todos los números primos desde 1 hasta un número límite especificado.</p>
+
+        <h4>Requerimientos Funcionales:</h4>
+        <ul>
+            <li>Recibir un número entero positivo (límite superior)</li>
+            <li>Verificar cada número para determinar si es primo</li>
+            <li>Generar lista con todos los números primos encontrados</li>
+            <li>Mostrar la lista en pantalla</li>
+        </ul>
+
+        <h4>Definición de Número Primo:</h4>
+        <ul>
+            <li>Un número primo es divisible únicamente por 1 y por sí mismo</li>
+            <li>El número 1 no se considera primo</li>
+            <li>El número 2 es el único primo par</li>
+        </ul>
+    </div>
+
+    <div class="requirements-list">
+        <h3>Variables Utilizadas</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Variable</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+            <tr>
+                <td>n</td>
+                <td>entero</td>
+                <td>Número límite superior</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>lista</td>
+                <td>array</td>
+                <td>Array con números primos</td>
+                <td>[2,3,5,7,11,13,17,19]</td>
+            </tr>
+            <tr>
+                <td>esPrimo</td>
+                <td>función</td>
+                <td>Función para verificar si es primo</td>
+                <td>esPrimo(7) → true</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Algoritmo de Verificación de Primos</h3>
+    <p>Se utiliza un algoritmo optimizado que verifica divisibilidad hasta la raíz cuadrada:</p>
+
+    <div class="code-block">
+const esPrimo = num => {
+    if (num < 2) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+};
+    </div>
+
+    <h3>Código Fuente Completo</h3>
+    <div class="code-block">
+class Primos {
+    calcular(n) {
+        // Validación de entrada
+        if (!Number.isInteger(n) || n <= 0) {
+            throw new Error('El número debe ser un entero positivo');
+        }
+
+        // Función para verificar si un número es primo
+        const esPrimo = num => {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        };
+
+        // Generar lista de números primos
+        const lista = [];
+        for (let i = 1; i <= n; i++) {
+            if (esPrimo(i)) lista.push(i);
+        }
+
+        return lista;
+    }
+}
+
+// Función para la interfaz web
+function generarPrimos() {
+    const n = parseInt(document.getElementById('numero').value);
+
+    try {
+        const primos = new Primos();
+        const resultado = primos.calcular(n);
+
+        document.getElementById('resultado').innerHTML = `
+            <h3>Resultado:</h3>
+            <p>Números primos del 1 al ${n}:</p>
+            <p><strong>${resultado.join(', ')}</strong></p>
+            <p><em>Total encontrados: ${resultado.length} números primos</em></p>
+        `;
+    } catch (error) {
+        document.getElementById('resultado').innerHTML =
+            `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+    </div>
+
+    <div class="test-cases">
+        <h3>Casos de Prueba</h3>
+        <table class="variables-table">
+            <tr>
+                <th>Límite</th>
+                <th>Números Primos</th>
+                <th>Cantidad</th>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>2, 3, 5, 7</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>2, 3, 5, 7, 11, 13, 17, 19</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>2, 3, 5, 7, 11, 13, 17, 19, 23, 29</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td>2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47</td>
+                <td>15</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Pantallas de Ejecución</h3>
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 13:</strong> Interfaz del generador de números primos</p>
+        <p>Muestra campo para ingresar el número límite</p>
+    </div>
+
+    <div class="screenshot-placeholder">
+        <p><strong>Captura de Pantalla 14:</strong> Resultado mostrando números primos hasta 20</p>
+        <p>Muestra: "2, 3, 5, 7, 11, 13, 17, 19 (8 números primos)"</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Conclusiones</h2>
+
+    <div class="analysis-section">
+        <h3>Resumen del Proyecto</h3>
+        <p>Se han desarrollado exitosamente 7 aplicaciones que demuestran el uso de conceptos fundamentales de programación:</p>
+
+        <h4>Conceptos Aplicados:</h4>
+        <ul>
+            <li><strong>Estructuras Condicionales:</strong> if, else if, else para toma de decisiones</li>
+            <li><strong>Estructuras de Repetición:</strong> for, while para iteraciones</li>
+            <li><strong>Variables y Tipos de Datos:</strong> enteros, decimales, arrays, booleanos</li>
+            <li><strong>Funciones:</strong> Modularización y reutilización de código</li>
+            <li><strong>Validación de Entrada:</strong> Manejo de errores y casos especiales</li>
+            <li><strong>Algoritmos Matemáticos:</strong> Euclides, verificación de primos, factorial</li>
+        </ul>
+
+        <h4>Metodología de Desarrollo:</h4>
+        <ol>
+            <li><strong>Análisis:</strong> Identificación de requerimientos y casos especiales</li>
+            <li><strong>Diseño:</strong> Definición de variables y estructuras de control</li>
+            <li><strong>Implementación:</strong> Codificación con JavaScript orientado a objetos</li>
+            <li><strong>Pruebas:</strong> Casos de prueba exhaustivos para validar funcionalidad</li>
+            <li><strong>Documentación:</strong> Explicación detallada del proceso y código</li>
+        </ol>
+
+        <h4>Resultados Obtenidos:</h4>
+        <ul>
+            <li>7 aplicaciones funcionales con interfaz web</li>
+            <li>Código modular y reutilizable</li>
+            <li>Validación robusta de entrada</li>
+            <li>Casos de prueba completos</li>
+            <li>Documentación exhaustiva</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px; padding: 20px; border: 2px solid #3498db;">
+        <h3>Proyecto Completado Exitosamente</h3>
+        <p><strong>Fundamentos de Programación</strong></p>
+        <p>Todos los escenarios implementados y documentados</p>
+        <p><em>Fecha de entrega: [Fecha]</em></p>
+    </div>
+
+</body>
+</html>
