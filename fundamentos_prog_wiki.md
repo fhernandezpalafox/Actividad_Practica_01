@@ -372,4 +372,3 @@ Estas líneas hacen que las clases sean accesibles desde los botones HTML median
 9. **Formateo de salida**
 10. **Programación orientada a objetos** (clases y métodos)
 
-Esta aplicación es una excelente herramienta educativa que combina conceptos fundamentales de programación con una interfaz moderna y funcional.
